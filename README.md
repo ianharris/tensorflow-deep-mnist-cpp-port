@@ -14,7 +14,7 @@ The ported code is still a work in progress and there is quite a bit of test cod
 
 # Compilation
 
-Currently, this project should be checked out and added as a sub-module in a tensorflow build. That is, this repo should be added as a repo to the root directory of a clone of the [TensorFlow repo](https://github.com/tensorflow/tensorflow).
+Currently, this project should be checked out and added as a sub-module in a tensorflow build. That is, this repo should be added as a sub-directory (named 'mnist') to the root directory of a clone of the [TensorFlow repo](https://github.com/tensorflow/tensorflow).
 
 It can then be built - along with TensorFlow - using [bazel](https://bazel.build/).
 
