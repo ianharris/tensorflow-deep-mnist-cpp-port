@@ -68,14 +68,14 @@ void Image::read(void)
     in.read((char *)data, numImages * rows * columns);
 
     // create the tensor
-    tensor = new tensorflow::Tensor(tensorflow::DT_FLOAT, 
+    tensor = new tensorflow::Tensor(tensorflow::DT_DOUBLE, 
                                     tensorflow::TensorShape({ numImages, rows, columns, 1 })); 
     
     // copy the read data into the tensor
-    auto dptr = tensor->flat<float>().data();
+    auto dptr = tensor->flat<double>().data();
 
     for(i=0; i<numImages * rows * columns; ++i) {
-        dptr[i] = float(data[i]);
+        dptr[i] = double(data[i]);
     }
 
     in.close();
@@ -85,13 +85,13 @@ void Image::loadBatch(int batchStartIndex, int batchSize)
 {
     // allocate the batch tensor if NULL
     if(!batchTensor) {
-        batchTensor = new tensorflow::Tensor(tensorflow::DT_FLOAT,
+        batchTensor = new tensorflow::Tensor(tensorflow::DT_DOUBLE,
                                              tensorflow::TensorShape({ batchSize, rows, columns, 1 })); 
     }
 
     // load the next batch
-    std::memcpy(batchTensor->flat<float>().data(), 
-                tensor->flat<float>().data() + batchStartIndex * rows * columns * sizeof(float),
-                batchSize * rows * columns * sizeof(float));
+    std::memcpy(batchTensor->flat<double>().data(), 
+                tensor->flat<double>().data() + batchStartIndex * rows * columns * sizeof(double),
+                batchSize * rows * columns * sizeof(double));
 }
 

@@ -1,6 +1,6 @@
 # Overview
 
-This repo contains a port of the [TensorFlow Deep MNIST tutorial](https://github.com/tensorflow/tensorflow/blob/r1.9/tensorflow/examples/tutorials/mnist/mnist_deep.py). The tutorial code uses TensorFlow's Python API. It is the aim of this repo to port that to the C++ API so that I can compare runtimes. **Note: The code is not yet complete**.
+This repo contains a port of the [TensorFlow Deep MNIST tutorial](https://github.com/tensorflow/tensorflow/blob/r1.9/tensorflow/examples/tutorials/mnist/mnist_deep.py). The tutorial code uses TensorFlow's Python API. It is the aim of this repo to port that to the C++ API so that I can compare runtimes. **Note: The code is not yet complete - an optimizer is partially built, I need to correctly feed the Tensors to it. A dropout layer also needs to be implemented**.
 
 # Current Status
 

@@ -2,6 +2,7 @@
 #define __MNIST_LABEL_H__
 
 #include "tensorflow/core/framework/tensor.h"
+#include "tensorflow/cc/client/client_session.h"
 
 #include "utils.h"
 

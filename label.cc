@@ -38,7 +38,7 @@ void Label::read(void)
 
     // check the magic number
     if(mn != LABEL_MAGIC_NUMBER) {
-        std::cout << "Magic Number in image file is " << mn << " when it should be " << IMAGE_MAGIC_NUMBER << std::endl;
+        std::cout << "Magic Number in image file is " << mn << " when it should be " << LABEL_MAGIC_NUMBER << std::endl;
     }
 
     // read the remainder of the data
@@ -47,17 +47,18 @@ void Label::read(void)
     data = (char *)std::malloc(numLabels);
     // read the data
     in.read(data, numLabels);
+    // close the input file
+    in.close();
 
     // create the tensor
     tensor = new tensorflow::Tensor(tensorflow::DT_UINT8, 
-                                    tensorflow::TensorShape({ numLabels, 1 })); 
+                                    tensorflow::TensorShape({ numLabels })); 
     
     // copy the read data into the tensor
     std::memcpy(tensor->flat<uint8_t>().data(), 
                 data, 
                 numLabels);
 
-    in.close();
 
 }
 
@@ -66,7 +67,7 @@ void Label::loadBatch(int batchStartIndex, int batchSize)
     // allocate the batch tensor if NULL
     if(!batchTensor) {
         batchTensor = new tensorflow::Tensor(tensorflow::DT_UINT8,
-                                            tensorflow::TensorShape({ batchSize, 1 })); 
+                                            tensorflow::TensorShape({ batchSize })); 
     }
 
     // load the next batch
